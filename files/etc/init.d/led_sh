@@ -1,0 +1,51 @@
+#!/bin/sh /etc/rc.common
+START=50
+
+run_led()
+{
+    local wan
+    local wlan
+
+    config_get wan $1 wan
+    config_get wlan $1 wlan
+    echo "wan is $wan"
+    echo "wlan is $wlan"
+
+    # set the mode of wan_wlan_led be gpio 
+    reg s 0 
+    reg w 60 8b701 
+
+    # set wan_gpio and wlan_gpio be output
+    reg s 0xb0000600 
+    reg w 74 10
+    reg w 9c 1
+
+    if [ $wan ]
+    then
+        #wan led on
+        reg w 70 0
+    else
+        reg w 70 10
+    fi
+
+    if [ $wlan ]
+    then
+        #wlan led on
+        reg w 98 0
+    else
+        reg w 98 1
+    fi
+}
+
+start()
+{
+    config_load led
+    config_foreach run_led arguments
+}
+
+stop()
+{
+    result=`pidof led`
+    kill -9 $result
+    echo "led has stoped"
+}

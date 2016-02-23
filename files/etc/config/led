@@ -1,0 +1,3 @@
+config arguments led
+    option wan '1'
+    option wlan '1'
