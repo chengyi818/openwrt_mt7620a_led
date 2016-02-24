@@ -25,6 +25,8 @@ endef
 
 define Package/led/postinst
 #!/bin/sh
+/etc/init.d/led_sh enable
+/etc/init.d/led_sh restart
 rm -rf /tmp/luci*
 endef
 
