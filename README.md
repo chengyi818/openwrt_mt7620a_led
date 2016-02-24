@@ -10,6 +10,6 @@
 2. 我的手上的板子:wan灯对应GPIO为44,wlan灯对应GPIO为72.
 不同的板子接线方式有所不同.
 
-3. master分支使用最简单的bash脚本的方式实现,因为MTK已经给出了内核Register Debug Module和用户空间工具reg.
+3. shell分支使用最简单的bash脚本的方式实现,因为MTK已经给出了内核Register Debug Module和用户空间工具reg.
 
-4. develop分支在内核模块中修改寄存器的值.
+4. master分支在内核模块中修改寄存器的值.
